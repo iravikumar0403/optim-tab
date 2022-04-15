@@ -16,7 +16,8 @@ export const Weather = () => {
     };
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }, []);
-  if (!setWeatherData) return "";
+
+  if (!weatherData) return "";
 
   const { weather, main } = weatherData;
 
