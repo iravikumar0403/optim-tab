@@ -17,7 +17,6 @@ const App = () => {
       );
       const bg = new Image();
       bg.src = data.urls.raw;
-      console.log(data);
       bg.onload = () => {
         setBgImage(data.urls.raw);
       };
