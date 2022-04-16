@@ -59,7 +59,7 @@ export const MainFocus = () => {
         </div>
       ) : (
         <input
-          className="bg-transparent text-xl px-4 py-2 w-80 focus:outline-none border-solid border-b text-xl"
+          className="bg-transparent text-xl px-4 py-2 w-80 focus:outline-none border-solid border-b text-center"
           type="text"
           placeholder="What's your main focus for today?"
           onChange={(e) => setFocusInput(e.target.value)}
