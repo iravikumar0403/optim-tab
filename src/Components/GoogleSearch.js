@@ -14,7 +14,7 @@ export const GoogleSearch = () => {
         />
         <a
           className="flex items-center justify-center px-4 border-l"
-          href={search ? `https://www.google.com?q=${search}` : "#"}
+          href={search ? `https://www.google.com/search?q=${search}` : "#"}
         >
           <svg
             className="h-4 w-4 text-grey-dark"
