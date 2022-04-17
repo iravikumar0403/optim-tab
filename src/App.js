@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useUser } from "./context/user-context";
+import { useUser } from "./context";
 import { Bottombar, MainContent, Topbar, Onboard } from "./Components";
 
 const App = () => {
@@ -12,15 +12,20 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(
-        `https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_KEY}&orientation=landscape`
-      );
-      const bg = new Image();
-      bg.src = data.urls.raw;
-      bg.onload = () => {
-        setBgImage(data.urls.raw);
-      };
-      setBgImage(data.urls.thumb);
+      try {
+        const { data } = await axios.get(
+          `https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_KEY}&orientation=landscape`
+        );
+        const bg = new Image();
+        bg.src = data.urls.raw;
+        bg.onload = () => {
+          setBgImage(data.urls.raw);
+          localStorage.setItem("lastBg", data.urls.raw);
+        };
+        setBgImage(data.urls.thumb);
+      } catch (error) {
+        setBgImage(localStorage.getItem("lastBg"));
+      }
     })();
   }, []);
 

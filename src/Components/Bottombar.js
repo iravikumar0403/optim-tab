@@ -1,4 +1,5 @@
 import { Quote } from "./Quote";
+import { Todo } from "./Todo";
 
 export const Bottombar = () => {
   return (
@@ -7,7 +8,9 @@ export const Bottombar = () => {
       <div className="p-4 text-center">
         <Quote />
       </div>
-      <div className="p-4 text-center w-1/6"></div>
+      <div className="p-4 text-center w-1/6">
+        <Todo />
+      </div>
     </div>
   );
 };

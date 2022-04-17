@@ -41,7 +41,7 @@ export const MainFocus = () => {
           <div className="flex items-center justify-center border-b border-transparent hover:border-white">
             <input
               type="checkbox"
-              value={isFocusCompleted}
+              checked={isFocusCompleted}
               onChange={handleCheckboxChange}
               className="border-slate-300 rounded h-4 w-4 mx-2"
             />

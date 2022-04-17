@@ -1,4 +1,4 @@
-import { useUser } from "../context/user-context";
+import { useUser } from "../context";
 import { DigitalClock } from "./DigitalClock";
 import { MainFocus } from "./MainFocus";
 import { GoogleSearch } from "./GoogleSearch";
