@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Bottombar, MainContent, Topbar } from "./Components";
+import { useUser } from "./context/user-context";
+import { Bottombar, MainContent, Topbar, Onboard } from "./Components";
 
 const App = () => {
+  const { user } = useUser();
   const [bgImage, setBgImage] = useState("");
   const bgStyles = {
     backgroundImage: `url('${bgImage}')`,
@@ -13,16 +15,27 @@ const App = () => {
       const { data } = await axios.get(
         `https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_KEY}&orientation=landscape`
       );
-      setBgImage(data.urls.raw);
+      const bg = new Image();
+      bg.src = data.urls.raw;
+      bg.onload = () => {
+        setBgImage(data.urls.raw);
+      };
+      setBgImage(data.urls.thumb);
     })();
   }, []);
 
   return (
     <div className="h-screen bg-cover bg-center text-white" style={bgStyles}>
       <div className="bg-main h-screen">
-        <Topbar />
-        <MainContent />
-        <Bottombar />
+        {user ? (
+          <>
+            <Topbar />
+            <MainContent />
+            <Bottombar />
+          </>
+        ) : (
+          <Onboard />
+        )}
       </div>
     </div>
   );
