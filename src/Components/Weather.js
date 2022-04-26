@@ -11,8 +11,9 @@ export const Weather = () => {
   const [locationInput, setLocationInput] = useState("");
 
   useEffect(() => {
+    const location = localStorage.getItem("location");
     const onSuccess = async (pos) => {
-      const data = await getWeatherData(pos);
+      const data = await getWeatherData(pos, location);
       setWeatherData(data);
     };
     const onError = (err) => {
@@ -26,6 +27,7 @@ export const Weather = () => {
   const { weather, main, name } = weatherData;
 
   const searchLocation = async () => {
+    setEditLocation(false);
     if (locationInput === "") {
       const onSuccess = async (pos) => {
         const data = await getWeatherData(pos);
@@ -36,10 +38,10 @@ export const Weather = () => {
       };
       getGeoLocation(onSuccess, onError);
     } else {
+      localStorage.setItem("location", locationInput);
       const data = await getWeatherData("", locationInput);
       setWeatherData(data);
     }
-    setEditLocation(false);
     setLocationInput("");
   };
 
